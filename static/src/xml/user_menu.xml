@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pdf_print_preview.UserMenu" t-inherit="web.UserMenu" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('dropdown-divider')]" position="after">
+            <a role="menuitem" href="#" t-on-click="_onPreviewClick" class="dropdown-item">Report preview</a>
+        </xpath>
+    </t>
+</templates>
