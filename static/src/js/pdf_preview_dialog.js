@@ -2,7 +2,6 @@
 
 import { Component } from "@odoo/owl";
 import { Dialog } from "@web/core/dialog/dialog";
-import { _t } from "@web/core/l10n/translation";
 
 export class PDFPreviewDialog extends Component {
     static template = "pdf_print_preview.PreviewDialogContent";
@@ -10,19 +9,16 @@ export class PDFPreviewDialog extends Component {
     static props = {
         url: { type: String },
         title: { type: String, optional: true },
-        close: { type: Function },
+        close: { type: Function }, // OWL requiere que esta prop se llame exactamente 'close'
     };
-
-    setup() {
-        this.title = this.props.title || _t("Vista Previa");
-        this.viewerUrl = `/web/static/lib/pdfjs/web/viewer.html?file=${encodeURIComponent(this.props.url)}`;
-    }
 
     get dialogProps() {
         return {
-            title: this.title,
+            title: this.props.title || "Vista Previa",
             size: "xl",
-            onClose: this.props.close,
+            // IMPORTANTE: Eliminamos 'onClose' por completo. 
+            // Usamos 'close' que es la prop estándar de Odoo 19.
+            close: this.props.close, 
         };
     }
 }
